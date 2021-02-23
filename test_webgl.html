@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="x-shader/x-fragment" id="vert">
+      attribute vec4 vPosition;
+      void main()
+      {
+          gl_Position = vPosition;
+      }
+
+    </script>
+    <script type="x-shader/x-fragment" id="frag">
+        precision mediump float;
+        uniform vec4 u_fragColor;
+        void main() {
+          gl_FragColor = u_fragColor;
+        }
+
+    </script>
+    <script type="text/javascript" src="test_webgl.js"></script>
+    <title>WEBGL</title>
+</head>
+<body style="background-color: bisque;">
+    <canvas id="webgl-app" width="512" height="512"></canvas>
+</body>
+</html>
