@@ -21,6 +21,7 @@
     <script type="text/javascript" src="square.js"></script>
     <script type="text/javascript" src="files.js"></script>
     <script type="text/javascript" src="line.js"></script>
+    <script type="text/javascript" src="polygon.js"></script>
     <title>WEBGL</title>
   </head>
   <body style="background-color: bisque;">
@@ -39,6 +40,11 @@
         <input id="changeLineOriginY" placeholder="Enter origin Y position" onsubmit="console.log(2)"></input>
         <input id="changeLineRotation" placeholder="Enter rotation" onsubmit="console.log(2)"></input>
         <button id="colorLine" onclick="redLine()">Red</button>
+      </div>
+      <div id="polygondiv">
+        <button id="polygon" onclick="polygon()">Create polygon</button>
+        <input id="polygonSides" placeholder="Enter polygon sides" onsubmit="console.log(3)"></input>
+        <input id="polygonLength" placeholder="Enter polygon length" onsubmit="console.log(3)"></input>
       </div>
       <p>
       Export file :
