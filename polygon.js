@@ -41,7 +41,7 @@ function hexToRGB(hex){
     } : null;
 }
 
-function polygon(inpFile){
+function polygon(inpFile, set){
     //console.log(colorHex);
     canvas = document.getElementById('webgl-app')
     gl = canvas.getContext('experimental-webgl')
@@ -61,9 +61,8 @@ function polygon(inpFile){
       })
     }
     else {
-        if (build == true){
+        if (set){
             setupVert(side, length)
-            build = false;
         }
         console.log(vertices)
         arrColor = [colorHex.r,colorHex.g,colorHex.b, 1];
@@ -150,7 +149,7 @@ function fixVertPol(mousePos){
     console.log(i)
     vertices[i] = mousePos.x;
     vertices[i+1] = mousePos.y;
-    polygon(false)
+    polygon(false, false)
 }
 
 function render(arrColor, shape, length){    

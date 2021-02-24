@@ -4,9 +4,8 @@ var originY = 0;
 var destX = 1;
 var destY = 1;
 var num = 1;
-var set = true;
 
-function line(num, inpFile) {
+function line(num, inpFile, set) {
   // originX = Number(document.getElementById('changeLineOriginX').value)/canvassize;
   // originY = Number(document.getElementById('changeLineOriginY').value)/canvassize;
   // destX = Number(document.getElementById('changeLineDestX').value)/canvassize;
@@ -66,7 +65,6 @@ function line(num, inpFile) {
   pol = false;
   gar = true;
   kotak = false;
-  set = false;
 }
 
 function searchVertGar(mousePos){
@@ -92,7 +90,7 @@ function fixVertGar(mousePos){
   console.log(i)
   vertices[i] = mousePos.x;
   vertices[i+1] = mousePos.y;
-  line(num, false)
+  line(num, false, false)
 }
 
 function multiply(a, matrix){

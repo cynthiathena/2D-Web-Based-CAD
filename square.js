@@ -1,8 +1,7 @@
 var vertices_begin;
 var arrColor;
-var setkot = true;
 
-function square(num, inpFile) {
+function square(num, inpFile, setkot) {
   console.log("square")
   canvas = document.getElementById('webgl-app')
   gl = canvas.getContext('experimental-webgl')
@@ -53,7 +52,6 @@ function square(num, inpFile) {
   pol = false;
   gar = false;
   kotak = true;
-  setkot = false;
 }
 
 function searchVertKot(mousePos){
@@ -84,7 +82,7 @@ function fixVertKot(mousePos){
       vertices[j+1] = vertices[j+1] + transY;
     }
   }
-  square(num, false)
+  square(num, false, false)
 }
 
 function multiply(a, matrix){
