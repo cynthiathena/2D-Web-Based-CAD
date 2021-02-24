@@ -1,5 +1,6 @@
 var vertices_begin;
 var arrColor;
+var setkot = true;
 
 function square(num, inpFile) {
   console.log("square")
@@ -20,12 +21,14 @@ function square(num, inpFile) {
   })
   }
   else {
-    vertices_begin = [
-      -0.1, -0.1,
-      -0.1, 0.1,
-      0.1, 0.1,
-      0.1, -0.1
-    ];
+    if (setkot){
+      vertices_begin = [
+        -0.1, -0.1,
+        -0.1, 0.1,
+        0.1, 0.1,
+        0.1, -0.1
+      ];
+    }
     arrColor = [1,0,0,1] ; 
   }
   console.log(vertices_begin)
@@ -47,7 +50,41 @@ function square(num, inpFile) {
   localStorage.setItem("typeModel","Line")
   localStorage.setItem("vertices",vertices)
   localStorage.setItem("color",arrColor)
+  pol = false;
+  gar = false;
+  kotak = true;
+  setkot = false;
+}
 
+function searchVertKot(mousePos){
+  console.log(vertices)
+  for (var i =0; i<vertices.length; i=i+2){
+      if ((Math.abs(vertices[i]-mousePos.x) < 0.01) && (Math.abs(vertices[i+1]-mousePos.y)< 0.01)){
+          var koorAwal = {x: vertices[i], y:vertices[i+1]}
+          return koorAwal;
+      }
+  }
+}
+
+function fixVertKot(mousePos){
+  for (var i =0; i<vertices.length; i=i+2){
+      if ((Math.abs(vertices[i]-koorAwal.x) < 0.01) && (Math.abs(vertices[i+1]-koorAwal.y)< 0.01)){
+          console.log(i)
+          break;
+      }
+  }
+  console.log(i)
+  var transX = mousePos.x - vertices[i];
+  var transY = mousePos.y - vertices[i+1];
+  vertices[i] = mousePos.x;
+  vertices[i+1] = mousePos.y;
+  for (var j = 0; j<vertices.length; j=j+2){
+    if (j != i){
+      vertices[j] = vertices[j] + transX;
+      vertices[j+1] = vertices[j+1] + transY;
+    }
+  }
+  square(num, false)
 }
 
 function multiply(a, matrix){

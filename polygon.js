@@ -82,6 +82,9 @@ function polygon(inpFile){
     localStorage.setItem("typeModel","Polygon")
     localStorage.setItem("vertices",vertices)
     localStorage.setItem("color",arrColor)
+    pol = true;
+    gar = false;
+    kotak = false;
 }
 
 function randomInt(range) {
@@ -124,7 +127,7 @@ function setupVert(side, length) {
     }
 }
 
-function searchVert(mousePos){
+function searchVertPol(mousePos){
     for (var i =0; i<vertices.length; i=i+2){
         console.log(vertices[i])
         console.log(vertices[i+1])
@@ -137,7 +140,7 @@ function searchVert(mousePos){
     }
 }
 
-function fixVert(mousePos){
+function fixVertPol(mousePos){
     for (var i =0; i<vertices.length; i=i+2){
         if ((Math.abs(vertices[i]-koorAwal.x) < 0.01) && (Math.abs(vertices[i+1]-koorAwal.y)< 0.01)){
             console.log(i)

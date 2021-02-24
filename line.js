@@ -4,6 +4,7 @@ var originY = 0;
 var destX = 1;
 var destY = 1;
 var num = 1;
+var set = true;
 
 function line(num, inpFile) {
   // originX = Number(document.getElementById('changeLineOriginX').value)/canvassize;
@@ -30,11 +31,13 @@ function line(num, inpFile) {
     })
   }
   else {
-    vertices = [
-      -1,-1, // originX , originY
-      -0.8, -0.8, // originX+length * cos(rot) , origin+length * sin(rot)
-      // originX, originY+0.1 // originX , originY+n
-    ];
+    if (set){
+      vertices = [
+        -1,-1, // originX , originY
+        -0.8, -0.8, // originX+length * cos(rot) , origin+length * sin(rot)
+        // originX, originY+0.1 // originX , originY+n
+      ];
+    }
   }
 
   if ((Number(num) != 1)) {
@@ -60,6 +63,36 @@ function line(num, inpFile) {
   localStorage.setItem("typeModel","Line")
   localStorage.setItem("vertices",vertices)
   localStorage.setItem("color",arrColor)
+  pol = false;
+  gar = true;
+  kotak = false;
+  set = false;
+}
+
+function searchVertGar(mousePos){
+  for (var i =0; i<vertices.length; i=i+2){
+      console.log(vertices[i])
+      console.log(vertices[i+1])
+      console.log(mousePos.x)
+      console.log(mousePos.y)
+      if ((Math.abs(vertices[i]-mousePos.x) < 0.01) && (Math.abs(vertices[i+1]-mousePos.y)< 0.01)){
+          var koorAwal = {x: vertices[i], y:vertices[i+1]}
+          return koorAwal;
+      }
+  }
+}
+
+function fixVertGar(mousePos){
+  for (var i =0; i<vertices.length; i=i+2){
+      if ((Math.abs(vertices[i]-koorAwal.x) < 0.01) && (Math.abs(vertices[i+1]-koorAwal.y)< 0.01)){
+          console.log(i)
+          break;
+      }
+  }
+  console.log(i)
+  vertices[i] = mousePos.x;
+  vertices[i+1] = mousePos.y;
+  line(num, false)
 }
 
 function multiply(a, matrix){

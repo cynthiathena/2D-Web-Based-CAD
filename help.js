@@ -1,5 +1,8 @@
 var first = true;
 var koorAwal = {x:0, y:0};
+var pol = false;
+var gar = false;
+var kotak = false;
 
 window.onload = function(){
     // enter = submit
@@ -42,7 +45,15 @@ window.onload = function(){
         fixmousePos = mousePos
         if (first == true){
             console.log(koorAwal)
-            koorAwal = searchVert(fixmousePos);
+            if (pol){
+                koorAwal = searchVertPol(fixmousePos);
+            }
+            else if(gar){
+                koorAwal = searchVertGar(fixmousePos);
+            }
+            else if(kotak){
+                koorAwal = searchVertKot(fixmousePos);
+            }
             console.log(koorAwal)
             if (koorAwal){
                 first = false;
@@ -50,7 +61,15 @@ window.onload = function(){
             }
         }
         else{
-            fixVert(fixmousePos);
+            if (pol){
+                fixVertPol(fixmousePos);
+            }
+            else if (gar){
+                fixVertGar(fixmousePos);
+            }
+            else if (kotak){
+                fixVertKot(fixmousePos)
+            }
             first = true;
         }
     }
