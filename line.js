@@ -30,13 +30,13 @@ function line(num, inpFile, set) {
     })
   }
   else {
-    if (set){
+    // if (set){
       vertices = [
         -1,-1, // originX , originY
         -0.8, -0.8, // originX+length * cos(rot) , origin+length * sin(rot)
         // originX, originY+0.1 // originX , originY+n
       ];
-    }
+    // }
   }
 
   if ((Number(num) != 1)) {
