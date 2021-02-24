@@ -17,7 +17,6 @@
         }
 
     </script>
-    <script type="text/javascript" src="test_webgl.js"></script>
     <script type="text/javascript" src="square.js"></script>
     <script type="text/javascript" src="files.js"></script>
     <script type="text/javascript" src="line.js"></script>
@@ -28,19 +27,15 @@
       <canvas id="webgl-app" width="512" height="512" style="background-color: white;"></canvas>
       <p>
       <button id="square" onclick="square(1)">Create Square</button>
-      <input id="changeSquare" placeholder="Enter size for square" onsubmit="console.log(1)"></input>
+      <input id="sizeRangeSquare" type="range" min="1" max="10" step="0.1" value="1" onchange="square(document.getElementById('sizeRangeSquare').value)"></input>
       </p>
       <p>
       <!--<button id="color" onclick="red()">Red</button>-->
       </p>
       <div id="linediv">
-        <button id="line" onclick="line()">Create Line</button>
-        <input id="changeLineOriginX" placeholder="Enter origin X position" onsubmit="console.log(2)"></input>
-        <input id="changeLineOriginY" placeholder="Enter origin Y position" onsubmit="console.log(2)"></input>
-        <input id="changeLineDestX" placeholder="Enter destination X position" onsubmit="console.log(2)"></input>
-        <input id="changeLineDestY" placeholder="Enter destination Y position" onsubmit="console.log(2)"></input>
-        <button id="colorLine" onclick="redLine()">Red</button>
-      </div>
+        <button id="line" onclick="line(1)">Create Line</button>
+        <input id="sizeRangeLine" type="range" min="1" max="10" step="0.1" value="1" onchange="line(document.getElementById('sizeRangeLine').value)"></input>
+      </div><br>
       <div id="polygondiv">
         <button id="polygon" onclick="polygon()">Create polygon</button>
         <input id="polygonSides" placeholder="Enter polygon sides" onsubmit="console.log(3)"></input>

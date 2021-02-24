@@ -3,6 +3,7 @@ var originX = 0;
 var originY = 0;
 var destX = 1;
 var destY = 1;
+var num = 1;
 window.onload = function init(){
   // enter = submit
   console.log("lines here ")
@@ -34,15 +35,23 @@ window.onload = function init(){
       line()
     }
   })
+
+  document.getElementById('sizeRangeLine').onChange = function(event) {
+    console.log("testing")
+    num = Number(event.target.value);
+    console.log(event.target.value)
+    line()
+    
+  }
 }
 
-function line() {
-  originX = Number(document.getElementById('changeLineOriginX').value)/canvassize;
-  originY = Number(document.getElementById('changeLineOriginY').value)/canvassize;
-  destX = Number(document.getElementById('changeLineDestX').value)/canvassize;
-  if(!destX) destX = 1;
-  destY = Number(document.getElementById('changeLineDestY').value)/canvassize;
-  if(!destY) destY = 1;
+function line(num) {
+  // originX = Number(document.getElementById('changeLineOriginX').value)/canvassize;
+  // originY = Number(document.getElementById('changeLineOriginY').value)/canvassize;
+  // destX = Number(document.getElementById('changeLineDestX').value)/canvassize;
+  // if(!destX) destX = 1;
+  // destY = Number(document.getElementById('changeLineDestY').value)/canvassize;
+  // if(!destY) destY = 1;
   canvas = document.getElementById('webgl-app')
   gl = canvas.getContext('experimental-webgl')
   gl.clearColor(1,1,1,1);
@@ -50,12 +59,19 @@ function line() {
 
   program = initShaders('vert','frag')
   gl.useProgram(program)
+  console.log(num)
   console.log("given line"+originX+" "+originY+" "+destX+" "+destY+" ")
   vertices = [
-    originX, originY, // originX , originY
-    destX, destY, // originX+length * cos(rot) , origin+length * sin(rot)
-    originX, originY+0.1 // originX , originY+n
+    -1,-1, // originX , originY
+    -0.8, -0.8, // originX+length * cos(rot) , origin+length * sin(rot)
+    // originX, originY+0.1 // originX , originY+n
   ];
+
+  if ((Number(num) != 1)) {
+    vertices[2] +=(0.2*(Number(num)-1))
+    vertices[3] +=(0.2*(Number(num)-1))
+    }
+  console.log(vertices)
 
   //vertices = multiply(num, vertices)
 
@@ -70,36 +86,9 @@ function line() {
   gl.enableVertexAttribArray(vertexPos)
   
   renderline(arrColor, vertices.length/2)
-}
 
-function redLine() {
-  canvas = document.getElementById('webgl-app')
-  gl = canvas.getContext('experimental-webgl')
-  gl.clearColor(1,1,1,1);
-  gl.viewport( 0, 0, canvas.width, canvas.height );
-
-  program = initShaders('vert','frag')
-  gl.useProgram(program)
-  // console.log("hello1")
-  vertices = [
-    originX, originY, // originX , originY
-    destX, destY, // originX+length * cos(rot) , origin+length * sin(rot)
-    originX, originY+0.1 // originX , originY+n
-  ];
-
-  // vertices = multiply(num, vertices)
-
-  arrColor = [1,0,0,1]
-
-  var vertBuf = gl.createBuffer()
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf)
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
-  
-  var vertexPos = gl.getAttribLocation(shaderProgram, 'vPosition')
-  gl.vertexAttribPointer(vertexPos, 2, gl.FLOAT, false, 0, 0)
-  gl.enableVertexAttribArray(vertexPos)
-  
-  renderline(arrColor, vertices.length/2)
+  // localStorage.setItem("typeModel","Line")
+  // 
 }
 
 function multiply(a, matrix){

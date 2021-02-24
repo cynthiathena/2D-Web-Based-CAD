@@ -1,15 +1,16 @@
 var vertices;
 var arrColor; 
 
-window.onload = function init(){
-  // enter = submit
-  document.getElementById('changeSquare').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      console.log(event.target.value)
-      square(event.target.value)
-    }
-  })
-}
+// window.onload = function init(){
+//   // enter = submit
+//   document.getElementById('changeSquare').addEventListener("change", function(event) {
+//     console.log('testing')
+//     if (event.key == "Enter") {
+//       console.log(event.target.value)
+//       square(event.target.value)
+//     }
+//   })
+// }
 
 function square(num) {
   canvas = document.getElementById('webgl-app')
@@ -20,14 +21,16 @@ function square(num) {
   program = initShaders('vert','frag')
   gl.useProgram(program)
   console.log("hello1")
+  console.log(num)
   vertices = [
-    -0.5, -0.5,
-    -0.5, 0.5,
-    0.5, 0.5,
-    0.5, -0.5
+    -0.1, -0.1,
+    -0.1, 0.1,
+    0.1, 0.1,
+    0.1, -0.1
   ];
-
+  if (num != ""){
   vertices = multiply(num, vertices)
+  }
 
   arrColor = [1,0,0,1]
 
@@ -45,37 +48,6 @@ function square(num) {
   localStorage.setItem("arrColorSquare",arrColor)
   // module.exports = {vertices}
 
-}
-
-function red() {
-  canvas = document.getElementById('webgl-app')
-  gl = canvas.getContext('experimental-webgl')
-  gl.clearColor(1,1,1,1);
-  gl.viewport( 0, 0, canvas.width, canvas.height );
-
-  program = initShaders('vert','frag')
-  gl.useProgram(program)
-  // console.log("hello1")
-  vertices = [
-    -0.5, -0.5,
-    -0.5, 0.5,
-    0.5, 0.5,
-    0.5, -0.5
-  ];
-
-  // vertices = multiply(num, vertices)
-
-  arrColor = [1,0,0,1]
-
-  var vertBuf = gl.createBuffer()
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf)
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
-  
-  var vertexPos = gl.getAttribLocation(shaderProgram, 'vPosition')
-  gl.vertexAttribPointer(vertexPos, 2, gl.FLOAT, false, 0, 0)
-  gl.enableVertexAttribArray(vertexPos)
-  
-  render(arrColor, gl.TRIANGLE_FAN, vertices.length/2)
 }
 
 function multiply(a, matrix){
