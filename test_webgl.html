@@ -21,10 +21,19 @@
     <script type="text/javascript" src="files.js"></script>
     <script type="text/javascript" src="line.js"></script>
     <script type="text/javascript" src="polygon.js"></script>
+    <script type="text/javascript" src="help.js"></script>
     <title>WEBGL</title>
   </head>
   <body style="background-color: bisque;">
       <canvas id="webgl-app" width="512" height="512" style="background-color: white;"></canvas>
+      <div id="helpwrap" style="position: fixed; right:20px;top:20px">
+        <button id="helpbtn" onclick="helpme()">Help</button>
+      </div>
+      <div id="helpbox" style="display:none; position:fixed; left:20%; right:20%; top: 20%; bottom: 20%; border: 3px solid #000000; background-color: #ffffff; padding: 30px; padding-top:10px">
+        <h1>Help</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repudiandae similique exercitationem, debitis cum veritatis sunt. Ipsa molestias debitis dolorem. A tempora iusto, in itaque nulla praesentium necessitatibus ipsum non.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, blanditiis soluta labore architecto neque laudantium earum quisquam molestiae suscipit vitae molestias tenetur illo? Enim asperiores libero sapiente accusantium deserunt nobis!</p>
+      </div>
       <p>
       <button id="square" onclick="square(1,false)">Create Square</button>
       <input id="sizeRangeSquare" type="range" min="1" max="10" step="0.1" value="1" onchange="square(document.getElementById('sizeRangeSquare').value,false)"></input>
