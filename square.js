@@ -1,3 +1,6 @@
+var vertices;
+var arrColor; 
+
 window.onload = function init(){
   // enter = submit
   document.getElementById('changeSquare').addEventListener("keyup", function(event) {
@@ -37,6 +40,11 @@ function square(num) {
   gl.enableVertexAttribArray(vertexPos)
   
   render(arrColor, gl.TRIANGLE_FAN, vertices.length/2)
+
+  localStorage.setItem("verticesSquare",vertices)
+  localStorage.setItem("arrColorSquare",arrColor)
+  // module.exports = {vertices}
+
 }
 
 function red() {
