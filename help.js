@@ -1,3 +1,6 @@
+var first = true;
+var koorAwal = {x:0, y:0};
+
 window.onload = function(){
     // enter = submit
     var divToHide = document.getElementById('helpbox');
@@ -15,6 +18,7 @@ window.onload = function(){
     //   if (event.key === "Enter") {
         console.log(event.target.value)
         side = event.target.value;
+        build = true;
     })
   
     document.getElementById('polygonLength').addEventListener("change", function(event) {
@@ -28,12 +32,24 @@ window.onload = function(){
         const bound = document.getElementById('webgl-app').getBoundingClientRect()
         console.log("masuk")
         const res = {
-            x: event.clientX - bound.left,
-            y: event.clientY - bound.top
+            x: ((event.clientX - bound.left)-256)/256,
+            y: ((event.clientY - bound.top)-256)/(-256)
         }
         mousePos = res
-        console.log(mousePos)
       }
+    document.getElementById('webgl-app').onmousedown = function(event){
+        
+        fixmousePos = mousePos
+        if (first == true){
+            koorAwal = searchVert(fixmousePos);
+            console.log(koorAwal)
+            first = false;
+        }
+        else{
+            fixVert(fixmousePos);
+            first = true;
+        }
+    }
 }
 function helpme() {
     document.getElementById('helpbox').style.display = "inline";

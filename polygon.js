@@ -1,4 +1,5 @@
 var vertices = [];
+var build = true;
 var arrColor;
 var side = 3;
 var length = 0.5;
@@ -60,17 +61,11 @@ function polygon(inpFile){
       })
     }
     else {
-        setupVert(side, length)
+        if (build == true){
+            setupVert(side, length)
+            build = false;
+        }
         console.log(vertices)
-        if (color == "R"){
-            arrColor = [1,0,0,1]
-        }
-        else if (color == "G"){
-            arrColor = [0,1,0,1]
-        }
-        else if (color == "B"){
-            arrColor = [0,0,1,1]
-        }
         arrColor = [colorHex.r,colorHex.g,colorHex.b, 1];
     }
 
@@ -127,6 +122,27 @@ function setupVert(side, length) {
         oldX = x;
         oldY = y;
     }
+}
+
+function searchVert(mousePos){
+    for (var i =0; i<side; i=i+2){
+        if ((Math.abs(vertices[i]-mousePos.x) < 0.05) && (Math.abs(vertices[i+1]-mousePos.y))){
+            var koorAwal = {x: vertices[i], y:vertices[i+1]}
+            return koorAwal;
+        }
+    }
+}
+
+function fixVert(mousePos){
+    for (var i =0; i<side; i=i+2){
+        if ((Math.abs(vertices[i]-koorAwal.x) < 0.05) && (Math.abs(vertices[i+1]-koorAwal.y))){
+            break;
+        }
+    }
+    console.log(i)
+    vertices[i] = mousePos.x;
+    vertices[i+1] = mousePos.y;
+    polygon(false)
 }
 
 function render(arrColor, shape, length){    
