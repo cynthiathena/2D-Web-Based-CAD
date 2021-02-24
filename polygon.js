@@ -3,7 +3,7 @@ var arrColor;
 var side = 3;
 var length = 0.5;
 var color = "R";
-var colorHex;
+var colorHex = {r: 1, g:0, b:0};
 var setWarna;
 
 window.onload = function init(){
@@ -44,9 +44,11 @@ function setGreen(){
 function setColor(event){
     colorHex = event.target.value;
     colorHex = hexToRGB(colorHex);
+    console.log(colorHex)
     colorHex.r = colorHex.r / 255;
     colorHex.g = colorHex.g / 255;
     colorHex.b = colorHex.b / 255;
+    polygon();
 }
 
 function hexToRGB(hex){
