@@ -44,38 +44,12 @@ window.onload = function(){
         
         fixmousePos = mousePos
         if (first == true){
-<<<<<<< HEAD
-            console.log(koorAwal)
-            if (pol){
-                koorAwal = searchVertPol(fixmousePos);
-            }
-            else if(gar){
-                koorAwal = searchVertGar(fixmousePos);
-            }
-            else if(kotak){
-                koorAwal = searchVertKot(fixmousePos);
-            }
-            console.log(koorAwal)
-            if (koorAwal){
-                first = false;
-                alert("berhasil memilih titik")
-            }
-=======
             koorAwal = searchVert(fixmousePos);
             console.log(koorAwal)
             first = false;
->>>>>>> parent of ba0eae1 (debug drag)
         }
         else{
-            if (pol){
-                fixVertPol(fixmousePos);
-            }
-            else if (gar){
-                fixVertGar(fixmousePos);
-            }
-            else if (kotak){
-                fixVertKot(fixmousePos)
-            }
+            fixVert(fixmousePos);
             first = true;
         }
     }
