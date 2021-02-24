@@ -2,6 +2,7 @@ var vertices = [];
 var arrColor;
 var side = 3;
 var length = 0.5;
+var color = "R";
 
 window.onload = function init(){
   // enter = submit
@@ -20,6 +21,18 @@ window.onload = function init(){
   })
 }
 
+function setRed(){
+    color = "R"
+}
+
+function setBlue(){
+    color = "B"
+}
+
+function setGreen(){
+    color = "G"
+}
+
 function polygon(){
     canvas = document.getElementById('webgl-app')
     gl = canvas.getContext('experimental-webgl')
@@ -32,7 +45,15 @@ function polygon(){
 
     setupVert(side, length)
     console.log(vertices)
-    arrColor = [1,0,0,1]
+    if (color == "R"){
+        arrColor = [1,0,0,1]
+    }
+    else if (color == "G"){
+        arrColor = [0,1,0,1]
+    }
+    else if (color == "B"){
+        arrColor = [0,0,1,1]
+    }
 
     var vertBuf = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf)

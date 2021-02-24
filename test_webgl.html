@@ -25,7 +25,7 @@
     <title>WEBGL</title>
   </head>
   <body style="background-color: bisque;">
-      <canvas id="webgl-app" width="512" height="512"></canvas>
+      <canvas id="webgl-app" width="512" height="512" style="background-color: white;"></canvas>
       <p>
       <button id="square" onclick="square(1)">Create Square</button>
       <input id="changeSquare" placeholder="Enter size for square" onsubmit="console.log(1)"></input>
@@ -45,6 +45,9 @@
         <button id="polygon" onclick="polygon()">Create polygon</button>
         <input id="polygonSides" placeholder="Enter polygon sides" onsubmit="console.log(3)"></input>
         <input id="polygonLength" placeholder="Enter polygon length" onsubmit="console.log(3)"></input>
+        <button id="redPoly" onclick="setRed()">Red</button>
+        <button id="bluePoly" onclick="setBlue()">Blue</button>
+        <button id="greenPoly" onclick="setGreen()">Green</button>
       </div>
       <p>
       Export file :
