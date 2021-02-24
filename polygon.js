@@ -125,8 +125,12 @@ function setupVert(side, length) {
 }
 
 function searchVert(mousePos){
-    for (var i =0; i<side; i=i+2){
-        if ((Math.abs(vertices[i]-mousePos.x) < 0.05) && (Math.abs(vertices[i+1]-mousePos.y))){
+    for (var i =0; i<vertices.length; i=i+2){
+        console.log(vertices[i])
+        console.log(vertices[i+1])
+        console.log(mousePos.x)
+        console.log(mousePos.y)
+        if ((Math.abs(vertices[i]-mousePos.x) < 0.01) && (Math.abs(vertices[i+1]-mousePos.y)< 0.01)){
             var koorAwal = {x: vertices[i], y:vertices[i+1]}
             return koorAwal;
         }
@@ -134,8 +138,9 @@ function searchVert(mousePos){
 }
 
 function fixVert(mousePos){
-    for (var i =0; i<side; i=i+2){
-        if ((Math.abs(vertices[i]-koorAwal.x) < 0.05) && (Math.abs(vertices[i+1]-koorAwal.y))){
+    for (var i =0; i<vertices.length; i=i+2){
+        if ((Math.abs(vertices[i]-koorAwal.x) < 0.01) && (Math.abs(vertices[i+1]-koorAwal.y)< 0.01)){
+            console.log(i)
             break;
         }
     }

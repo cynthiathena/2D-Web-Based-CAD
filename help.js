@@ -41,9 +41,12 @@ window.onload = function(){
         
         fixmousePos = mousePos
         if (first == true){
+            console.log(koorAwal)
             koorAwal = searchVert(fixmousePos);
             console.log(koorAwal)
-            first = false;
+            if (koorAwal){
+                first = false;
+            }
         }
         else{
             fixVert(fixmousePos);
