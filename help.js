@@ -46,6 +46,7 @@ window.onload = function(){
             console.log(koorAwal)
             if (koorAwal){
                 first = false;
+                alert("berhasil memilih titik")
             }
         }
         else{
