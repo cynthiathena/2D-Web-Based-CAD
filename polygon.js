@@ -6,26 +6,6 @@ var color = "R";
 var colorHex = {r: 1, g:0, b:0};
 var setWarna;
 
-window.onload = function init(){
-  setWarna = document.getElementById('set-color');
-  setWarna.value = "#FFFFFF";
-  setWarna.addEventListener("change", setColor, false);
-    // enter = submit
-  document.getElementById('polygonSides').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      console.log(event.target.value)
-      side = event.target.value;
-    }
-  })
-
-  document.getElementById('polygonLength').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      console.log(event.target.value)
-      length = event.target.value;
-    }
-  })
-}
-
 function setRed(){
     color = "R"
     polygon();
