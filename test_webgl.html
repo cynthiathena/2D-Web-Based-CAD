@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script type="x-shader/x-fragment" id="vert">
       attribute vec4 vPosition;
       void main()
@@ -17,13 +17,27 @@
         }
 
     </script>
-    <script type="text/javascript" src="test_webgl.js"></script>
+    <script type="text/javascript" src="square.js"></script>
+    <script type="text/javascript" src="files.js"></script>
     <title>WEBGL</title>
-</head>
-<body style="background-color: bisque;">
-    <canvas id="webgl-app" width="512" height="512"></canvas>
-    <button id="square" onclick="square(1)">Create Square</button>
-    <input id="changeSquare" placeholder="Enter size for square" onsubmit="console.log(1)"></input>
-    <button id="color" onclick="red()">Red</button>
-</body>
+  </head>
+  <body style="background-color: bisque;">
+      <canvas id="webgl-app" width="512" height="512"></canvas>
+      <p>
+      <button id="square" onclick="square(1)">Create Square</button>
+      <input id="changeSquare" placeholder="Enter size for square" onsubmit="console.log(1)"></input>
+      </p>
+      <p>
+      <!--<button id="color" onclick="red()">Red</button>-->
+      </p>
+      <p>
+      Export file :
+      <br><br><input id="filename" placeholder="Fill your filename"></input>
+      <button id="saveFile" onclick="exportFile()">Save File</button>
+      </p>
+      <p>
+      Import file :
+      <br><br><input type="file" id="inputFile" onchange="inputFromFile()"></input>
+      </p>
+  </body>
 </html>
