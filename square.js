@@ -20,14 +20,12 @@ function square(num, inpFile, setkot) {
   })
   }
   else {
-    if (setkot){
-      vertices_begin = [
-        -0.1, -0.1,
-        -0.1, 0.1,
-        0.1, 0.1,
-        0.1, -0.1
-      ];
-    }
+    vertices_begin = [
+      -0.1, -0.1,
+      -0.1, 0.1,
+      0.1, 0.1,
+      0.1, -0.1
+    ];
     arrColor = [1,0,0,1] ; 
   }
   console.log(vertices_begin)
@@ -79,7 +77,9 @@ function fixVertKot(mousePos){
   for (var j = 0; j<vertices.length; j=j+2){
     if (j != i){
       vertices[j] = vertices[j] + transX;
+      vertices_begin[j] = vertices_begin[j] + transX;
       vertices[j+1] = vertices[j+1] + transY;
+      vertices_begin[j+1] = vertices_begin[j+1] + transY;
     }
   }
   square(num, false, false)
