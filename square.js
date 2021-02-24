@@ -1,18 +1,8 @@
-var vertices;
-var arrColor; 
+var vertices_begin;
+var arrColor;
 
-// window.onload = function init(){
-//   // enter = submit
-//   document.getElementById('changeSquare').addEventListener("change", function(event) {
-//     console.log('testing')
-//     if (event.key == "Enter") {
-//       console.log(event.target.value)
-//       square(event.target.value)
-//     }
-//   })
-// }
-
-function square(num) {
+function square(num, inpFile) {
+  console.log("square")
   canvas = document.getElementById('webgl-app')
   gl = canvas.getContext('experimental-webgl')
   gl.clearColor(1,1,1,1);
@@ -20,19 +10,29 @@ function square(num) {
 
   program = initShaders('vert','frag')
   gl.useProgram(program)
-  console.log("hello1")
-  console.log(num)
-  vertices = [
-    -0.1, -0.1,
-    -0.1, 0.1,
-    0.1, 0.1,
-    0.1, -0.1
-  ];
-  if (num != ""){
-  vertices = multiply(num, vertices)
-  }
 
-  arrColor = [1,0,0,1]
+  if ((inpFile == true)) {
+    vertices_begin = localStorage.getItem("arrInpVert").split(",").map(function(e) {
+      return parseFloat(e);
+  })
+    arrColor = localStorage.getItem("arrInpColor").split(",").map(function(e) {
+      return parseFloat(e);
+  })
+  }
+  else {
+    vertices_begin = [
+      -0.1, -0.1,
+      -0.1, 0.1,
+      0.1, 0.1,
+      0.1, -0.1
+    ];
+    arrColor = [1,0,0,1] ; 
+  }
+  console.log(vertices_begin)
+  console.log(arrColor)
+  if (num != ""){
+    vertices = multiply(num, vertices_begin)
+  }
 
   var vertBuf = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf)
@@ -44,9 +44,9 @@ function square(num) {
   
   render(arrColor, gl.TRIANGLE_FAN, vertices.length/2)
 
-  localStorage.setItem("verticesSquare",vertices)
-  localStorage.setItem("arrColorSquare",arrColor)
-  // module.exports = {vertices}
+  localStorage.setItem("typeModel","Line")
+  localStorage.setItem("vertices",vertices)
+  localStorage.setItem("color",arrColor)
 
 }
 

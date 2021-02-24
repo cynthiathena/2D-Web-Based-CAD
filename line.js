@@ -4,48 +4,8 @@ var originY = 0;
 var destX = 1;
 var destY = 1;
 var num = 1;
-window.onload = function init(){
-  // enter = submit
-  console.log("lines here ")
-  document.getElementById('changeLineOriginX').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      originX = Number(document.getElementById('changeLineOriginX').value)/canvassize;
-      console.log("originX changed")
-      line()
-    }
-  })
-  document.getElementById('changeLineOriginY').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      originY = Number(document.getElementById('changeLineOriginY').value)/canvassize;
-      console.log(event.target.value)
-      line()
-    }
-  })
-  document.getElementById('changeLineDestX').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      destX = Number(document.getElementById('changeLineDestX').value)/canvassize;
-      console.log("destX changed")
-      line()
-    }
-  })
-  document.getElementById('changeLineDestY').addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      destY = Number(document.getElementById('changeLineDestY').value)/canvassize;
-      console.log(event.target.value)
-      line()
-    }
-  })
 
-  document.getElementById('sizeRangeLine').onChange = function(event) {
-    console.log("testing")
-    num = Number(event.target.value);
-    console.log(event.target.value)
-    line()
-    
-  }
-}
-
-function line(num) {
+function line(num, inpFile) {
   // originX = Number(document.getElementById('changeLineOriginX').value)/canvassize;
   // originY = Number(document.getElementById('changeLineOriginY').value)/canvassize;
   // destX = Number(document.getElementById('changeLineDestX').value)/canvassize;
@@ -61,11 +21,21 @@ function line(num) {
   gl.useProgram(program)
   console.log(num)
   console.log("given line"+originX+" "+originY+" "+destX+" "+destY+" ")
-  vertices = [
-    -1,-1, // originX , originY
-    -0.8, -0.8, // originX+length * cos(rot) , origin+length * sin(rot)
-    // originX, originY+0.1 // originX , originY+n
-  ];
+  if (inpFile == true){
+    vertices = localStorage.getItem("arrInpVert").split(",").map(function(e) {
+      return parseFloat(e);
+    })
+    arrColor = localStorage.getItem("arrInpColor").split(",").map(function(e) {
+      return parseFloat(e);
+    })
+  }
+  else {
+    vertices = [
+      -1,-1, // originX , originY
+      -0.8, -0.8, // originX+length * cos(rot) , origin+length * sin(rot)
+      // originX, originY+0.1 // originX , originY+n
+    ];
+  }
 
   if ((Number(num) != 1)) {
     vertices[2] +=(0.2*(Number(num)-1))
@@ -87,8 +57,9 @@ function line(num) {
   
   renderline(arrColor, vertices.length/2)
 
-  // localStorage.setItem("typeModel","Line")
-  // 
+  localStorage.setItem("typeModel","Line")
+  localStorage.setItem("vertices",vertices)
+  localStorage.setItem("color",arrColor)
 }
 
 function multiply(a, matrix){

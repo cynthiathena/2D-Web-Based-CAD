@@ -26,23 +26,24 @@
   <body style="background-color: bisque;">
       <canvas id="webgl-app" width="512" height="512" style="background-color: white;"></canvas>
       <p>
-      <button id="square" onclick="square(1)">Create Square</button>
-      <input id="sizeRangeSquare" type="range" min="1" max="10" step="0.1" value="1" onchange="square(document.getElementById('sizeRangeSquare').value)"></input>
+      <button id="square" onclick="square(1,false)">Create Square</button>
+      <input id="sizeRangeSquare" type="range" min="1" max="10" step="0.1" value="1" onchange="square(document.getElementById('sizeRangeSquare').value,false)"></input>
       </p>
       <p>
       <!--<button id="color" onclick="red()">Red</button>-->
       </p>
       <div id="linediv">
-        <button id="line" onclick="line(1)">Create Line</button>
-        <input id="sizeRangeLine" type="range" min="1" max="10" step="0.1" value="1" onchange="line(document.getElementById('sizeRangeLine').value)"></input>
+        <button id="line" onclick="line(1,false)">Create Line</button>
+        <input id="sizeRangeLine" type="range" min="1" max="10" step="0.1" value="1" onchange="line(document.getElementById('sizeRangeLine').value,false)"></input>
       </div><br>
       <div id="polygondiv">
-        <button id="polygon" onclick="polygon()">Create polygon</button>
+        <button id="polygon" onclick="polygon(false)">Create polygon</button>
         <input id="polygonSides" placeholder="Enter polygon sides" onsubmit="console.log(3)"></input>
         <input id="polygonLength" placeholder="Enter polygon length" onsubmit="console.log(3)"></input>
-        <button id="redPoly" onclick="setRed()">Red</button>
-        <button id="bluePoly" onclick="setBlue()">Blue</button>
-        <button id="greenPoly" onclick="setGreen()">Green</button>
+        <form>
+          <label for="color">Select color for polygon:</label>
+          <input type="color" id="set-color" name="set-color" value="#FFFFFF">
+        </form>
       </div>
       <p>
       Export file :

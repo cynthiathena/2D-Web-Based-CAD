@@ -1,11 +1,10 @@
 function exportFile()
 {
-    //TO DO : determine model 
-    var square  = "Square \n";
-    var squareCoordinat = localStorage.getItem("verticesSquare") + "\n"
-    var squareColor = localStorage.getItem("arrColorSquare")
+    var typeModel  = localStorage.getItem("typeModel") + "\n"
+    var vertices = localStorage.getItem("vertices") + "\n"
+    var color = localStorage.getItem("color")
 
-    var contents = square + squareCoordinat + squareColor;
+    var contents = typeModel + vertices + color;
     var blob = new Blob([contents], {type:'text/plain'});
     var filename = document.getElementById("filename").value;
     var link = document.createElement("a");
@@ -37,18 +36,29 @@ function inputFromFile(file) {
         var newLine2 = inpFile.substring(newLine1+1,inpFile.length).search(/\n/) + newLine1 + 1
 
         var inpModel = inpFile.substring(0,newLine1)
-        var arrInpVert = inpFile.substring((newLine1+1),newLine2).split(",").map(function(e) {
-            return parseFloat(e);
-        })
-        var arrInpColor = inpFile.substring((newLine2+1),inpFile.length).split(",").map(function(e) {
-            return parseFloat(e);
-        })
+        var arrInpVert = inpFile.substring((newLine1+1),newLine2)
+        var arrInpColor = inpFile.substring((newLine2+1),inpFile.length)
         console.log(arrInpVert)
         console.log(arrInpColor)
         // console.log(inpFile.substr(0,newLine))
         localStorage.setItem("arrInpVert",arrInpVert)
         localStorage.setItem("arrInpColor",arrInpColor)
         localStorage.setItem("inpModel",inpModel)
+        
+        var test = "Square";
+        console.log(inpModel[0])
+        console.log(test[0])
+        // console.log(String(inpModel).localeCompare("Square"))
+
+        if (inpModel[0] == "S"){
+            square(1,true,false)
+        }
+        else if (inpModel[0] == "L"){
+            line(1,true)
+        }
+        else if (inpModel[0] == "P"){
+            polygon(1,true)
+        }
         
     })
     // console.log(typeof(file))

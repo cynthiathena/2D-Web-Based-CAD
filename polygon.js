@@ -60,7 +60,7 @@ function hexToRGB(hex){
     } : null;
 }
 
-function polygon(){
+function polygon(inpFile){
     //console.log(colorHex);
     canvas = document.getElementById('webgl-app')
     gl = canvas.getContext('experimental-webgl')
@@ -71,18 +71,28 @@ function polygon(){
     gl.useProgram(program)
     console.log("tes")
 
-    setupVert(side, length)
-    console.log(vertices)
-    if (color == "R"){
-        arrColor = [1,0,0,1]
+    if (inpFile == true) {
+        vertices = localStorage.getItem("arrInpVert").split(",").map(function(e) {
+          return parseFloat(e);
+      })
+        arrColor = localStorage.getItem("arrInpColor").split(",").map(function(e) {
+          return parseFloat(e);
+      })
     }
-    else if (color == "G"){
-        arrColor = [0,1,0,1]
+    else {
+        setupVert(side, length)
+        console.log(vertices)
+        if (color == "R"){
+            arrColor = [1,0,0,1]
+        }
+        else if (color == "G"){
+            arrColor = [0,1,0,1]
+        }
+        else if (color == "B"){
+            arrColor = [0,0,1,1]
+        }
+        arrColor = [colorHex.r,colorHex.g,colorHex.b, 1];
     }
-    else if (color == "B"){
-        arrColor = [0,0,1,1]
-    }
-    arrColor = [colorHex.r,colorHex.g,colorHex.b, 1];
 
     var vertBuf = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf)
@@ -93,6 +103,10 @@ function polygon(){
     gl.enableVertexAttribArray(vertexPos)
   
     render(arrColor, gl.TRIANGLE_FAN, vertices.length/2)
+
+    localStorage.setItem("typeModel","Polygon")
+    localStorage.setItem("vertices",vertices)
+    localStorage.setItem("color",arrColor)
 }
 
 function randomInt(range) {
