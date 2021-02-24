@@ -3,9 +3,14 @@ var arrColor;
 var side = 3;
 var length = 0.5;
 var color = "R";
+var colorHex;
+var setWarna;
 
 window.onload = function init(){
-  // enter = submit
+  setWarna = document.getElementById('set-color');
+  setWarna.value = "#FFFFFF";
+  setWarna.addEventListener("change", setColor, false);
+    // enter = submit
   document.getElementById('polygonSides').addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
       console.log(event.target.value)
@@ -23,17 +28,38 @@ window.onload = function init(){
 
 function setRed(){
     color = "R"
+    polygon();
 }
 
 function setBlue(){
     color = "B"
+    polygon();
 }
 
 function setGreen(){
     color = "G"
+    polygon();
+}
+
+function setColor(event){
+    colorHex = event.target.value;
+    colorHex = hexToRGB(colorHex);
+    colorHex.r = colorHex.r / 255;
+    colorHex.g = colorHex.g / 255;
+    colorHex.b = colorHex.b / 255;
+}
+
+function hexToRGB(hex){
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
 
 function polygon(){
+    //console.log(colorHex);
     canvas = document.getElementById('webgl-app')
     gl = canvas.getContext('experimental-webgl')
     gl.clearColor(1,1,1,1);
@@ -54,6 +80,7 @@ function polygon(){
     else if (color == "B"){
         arrColor = [0,0,1,1]
     }
+    arrColor = [colorHex.r,colorHex.g,colorHex.b, 1];
 
     var vertBuf = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, vertBuf)
