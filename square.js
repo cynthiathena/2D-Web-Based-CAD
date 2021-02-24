@@ -44,7 +44,7 @@ function square(num, inpFile, setkot) {
   
   render(arrColor, gl.TRIANGLE_FAN, vertices.length/2)
 
-  localStorage.setItem("typeModel","Line")
+  localStorage.setItem("typeModel","Square")
   localStorage.setItem("vertices",vertices)
   localStorage.setItem("color",arrColor)
   pol = false;
