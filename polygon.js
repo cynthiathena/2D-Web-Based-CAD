@@ -126,6 +126,7 @@ function setupVert(side, length) {
     }
 }
 
+<<<<<<< HEAD
 function searchVertPol(mousePos){
     for (var i =0; i<vertices.length; i=i+2){
         console.log(vertices[i])
@@ -133,16 +134,27 @@ function searchVertPol(mousePos){
         console.log(mousePos.x)
         console.log(mousePos.y)
         if ((Math.abs(vertices[i]-mousePos.x) < 0.01) && (Math.abs(vertices[i+1]-mousePos.y)< 0.01)){
+=======
+function searchVert(mousePos){
+    for (var i =0; i<side; i=i+2){
+        if ((Math.abs(vertices[i]-mousePos.x) < 0.05) && (Math.abs(vertices[i+1]-mousePos.y))){
+>>>>>>> parent of ba0eae1 (debug drag)
             var koorAwal = {x: vertices[i], y:vertices[i+1]}
             return koorAwal;
         }
     }
 }
 
+<<<<<<< HEAD
 function fixVertPol(mousePos){
     for (var i =0; i<vertices.length; i=i+2){
         if ((Math.abs(vertices[i]-koorAwal.x) < 0.01) && (Math.abs(vertices[i+1]-koorAwal.y)< 0.01)){
             console.log(i)
+=======
+function fixVert(mousePos){
+    for (var i =0; i<side; i=i+2){
+        if ((Math.abs(vertices[i]-koorAwal.x) < 0.05) && (Math.abs(vertices[i+1]-koorAwal.y))){
+>>>>>>> parent of ba0eae1 (debug drag)
             break;
         }
     }

@@ -44,6 +44,7 @@ window.onload = function(){
         
         fixmousePos = mousePos
         if (first == true){
+<<<<<<< HEAD
             console.log(koorAwal)
             if (pol){
                 koorAwal = searchVertPol(fixmousePos);
@@ -59,6 +60,11 @@ window.onload = function(){
                 first = false;
                 alert("berhasil memilih titik")
             }
+=======
+            koorAwal = searchVert(fixmousePos);
+            console.log(koorAwal)
+            first = false;
+>>>>>>> parent of ba0eae1 (debug drag)
         }
         else{
             if (pol){
